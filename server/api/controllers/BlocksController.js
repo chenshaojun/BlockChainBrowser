@@ -58,6 +58,15 @@
 const Pub = require('../../assets/js/utils');
 module.exports = {
   blocks: function (req, res) {
+  var ret = {
+    type: req.param('type'),
+    option: req.param('option'),
+    page: req.param('page'),
+    
+  }
+  console.log(ret)
+  
+/* 
     var hs = req.param('heights')
     var h = hs.split(',')
     var t = ''
@@ -74,7 +83,9 @@ module.exports = {
       data: d,
       err_no: 0,
       err_msg: ''
-    }
+    } */
+
+
     res.json(ret)
   }
 }

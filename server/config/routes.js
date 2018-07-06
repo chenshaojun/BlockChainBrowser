@@ -28,7 +28,7 @@ module.exports.routes = {
     view: 'pages/homepage'
   },
   //获取区块信息，可以是一个区块，也可以是逗号分隔的多个区块
-  'get /block/:heights': 'BlockController.blocks',
+  'GET /blocks/:type/:option': 'BlocksController.blocks',
   
 
   /***************************************************************************

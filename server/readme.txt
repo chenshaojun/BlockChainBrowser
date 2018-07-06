@@ -1,10 +1,27 @@
 API设计
 -----------------------------------------------------------------
-1、区块
-1.1 获取区块信息    http://localhost:1337/block/15,123,441,41,5
-  GET /block/heights
-    例如：GET /block/123456
-    或者：GET /block/123456,11234,12445
+1. 区块
+1.1	查询区块概要信息列表（字段：区块号、交易数、区块Hash、区块生成时间，查询结果具有分页功能），该功能查询的结果是一个列表。
+   GET　/blocks/:type/:option
+   其中:
+    type: new 最新块 ; one 单一块 ; multi 多个块 ; hash 区块hash ； range 指定范围块 ; day 某一天的块 ;week 某一周的块 ;month 某一个月的块
+    option： 
+  （1）最新块的获取 
+   GET /blocks/new
+   (2) 获取1个块
+   GET /blocks/one/:height
+   (3) 获取多个块,不连续
+   GET /blocks/multi/:heights
+   (4) 获取一个范围的块，连续
+   GET /blocks/range/:from/:to
+   (5) 获取某天的块
+   GET /blocks/day/:day
+   (5) 获取某周的块
+   GET /blocks/week/:day
+   (5) 获取某月的块
+   GET /blocks/month/:day
+   (6) 获取HASH块
+   GET /blocks/hash/:<块hash>
   响应
     {
       "data": ...,        -- 具体的 API 响应结果
