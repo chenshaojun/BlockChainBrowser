@@ -60,7 +60,7 @@ module.exports = {
   blocks: function (req, res) {
   var ret = {
     type: req.param('type'),
-    option: req.param('option'),
+    object: req.param('object'),
     page: req.param('page'),
     
   }
