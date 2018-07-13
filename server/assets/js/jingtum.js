@@ -1,6 +1,7 @@
 //和jingtum的接口
 //公用模块
 const JINGTUM = require('jingtum-lib');
+var async=require("async");
 module.exports = {
   // 获得一个区块的信息
   getBlock: function (index,res) {
@@ -28,3 +29,4 @@ module.exports = {
     })
   }
 }
+//要使用ASYNC 函数   http://www.ruanyifeng.com/blog/2015/05/async.html

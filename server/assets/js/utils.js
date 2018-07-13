@@ -1,5 +1,6 @@
 //公用模块
 const fs = require('fs')
+var async=require("async");
 module.exports = {
   //1. 增加0前缀到指定位数 
   addZeroPrefix: function (num, length) {
