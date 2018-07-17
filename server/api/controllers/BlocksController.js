@@ -6,20 +6,24 @@
  * 
  */
 // 引入公用模块
-var JT = require('../../assets/js/jingtum');
+var JT = require('../../assets/js/jingtum')
+var Pub =require('../../assets/js/block')
+
 module.exports = {
   blocks: function (req, res) {
     var type = req.param('type') || 'now'
     var object = req.param('object') || '1'
     var page = req.param('page') || '1'
     var ret = {}
-    /*
+    
     switch (type) {
       case 'now': //最新的块，object表示块数
-        pub.Get1(1,2,3)
-        console.log('最近的' + object + '个块，第' + page + '页');
+      ret = Pub.GetOneBlock(object)
+      return res.feedback(200,ret,'3');
         break
       case 'mutil': //不连续的区块概要信息，object指示块index的列表，逗号分隔
+        ret = Pub.GetOneBlock(object)
+        return res.feedback(200,ret,'3');
         console.log('{' + object + '}块，第' + page + '页');
         break
       case 'range': //连续的区块概要信息，object指示开始块index和结束块index,逗号分隔
@@ -37,9 +41,8 @@ module.exports = {
       default:
         ret = Pub.getOneBlock(1)
         break
-    }*/
-    JT.getBlock(2, res)
-    //return res.feedback(200,ret,'3');
+    }
+
     /* 
       var hs = req.param('heights')
       var h = hs.split(',')

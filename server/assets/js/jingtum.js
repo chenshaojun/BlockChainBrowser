@@ -21,8 +21,7 @@ module.exports = {
             res.feedback(200, '请求失败', '3')
           } else {
             res.feedback(200, ret, '0')
-            console.log(ret)
-            
+            console.log(ret)            
           }
         })
       }
