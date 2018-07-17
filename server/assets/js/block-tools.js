@@ -2,21 +2,55 @@
 
 //公用模块
 var Pub = require('../../assets/js/utils');
+const LOCAL = require('../../assets/js/local-tools'); //本地数据处理
 const fs = require('fs')
 const JINGTUM = require('jingtum-lib');
 var request = require('request');
 var basePath = './data/block'
+
 module.exports = {
-  // 获取取一个block信息，入口参数可能是index或/hash（根据位数判断 Hash64位）
-  // 返回数据：区块号index.time.交易数num.hash.parent_hash
+  /*****************************************
+   * 获取最新的概要信息
+   * 参数:number 区块数 最大20
+   * 返回：概要信息数组，每个都是字符串   
+   *      index.time.num.hash.parent_hash
+   ****************************************/
+  getNewSummarys: function (number) {
+    var n = number
+    ret = new Array()
+    if (n > 20) n = 20
+    var index = getLastIndex()  //获取当前最后一个区块的index
+    for (i = 0; i < number; i++) {
+      ret.push(getOneSummary(index-i))
+    }
+    return ret
+  }
+
+  /********************************
+   * 获取区块的概要信息
+   * 入口参数：
+   *  1. 一个整数：返回一个区块的概要信息
+   *  2. 逗号分隔的多个整数：返回多个区块的概要信息
+   *  3. 减号分隔的两个整数: 返回一个区间的概要信息
+   * 
+  // 返回数据：{index,time,num,hash,parent_hash}
   // 保留：如果本地有信息则处理后返回，否则数据转入本地后再处理
-  GetOneBlock: function (para) {
-
-
-
-
+  // 
+  getBlockSummary: function(index){
     var index = para
+    if (para.length = 64) hash = Pub.tranHash2Index(para)
+
+    //首先从本地读取数据
+    ret = LOCAL.GetBlockSummary(index)
+  },
+
+
+  GetOneBlock: function (para) {
+    var index = para
+    var hash = para 
     if (para.length > 30) index = Pub.tranHash2Index(para)
+
+
     var p = Pub.getLedgerPath(index, sails.config.const.blockRoot)
     var readDir = fs.readdirSync(p, 'utf-8')
     for (i = 0; i < readDir.length; i++) {

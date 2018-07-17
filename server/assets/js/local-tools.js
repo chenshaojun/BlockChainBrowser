@@ -4,7 +4,7 @@ const fs = require('fs')
 var async = require("async");
 module.exports = {
   //根据index读取区块概要信息
-  GetBlockByIndex: function (index) {
+  GetBlockSummary: function (index) {
     var path = Pub.getLedgerPath(index, sails.config.const.blockRoot) // 由index和根目录常量blockRoot转换完整路径
     var readDir = fs.readdirSync(path, 'utf-8')    //读入路径目录下所有文件列表
     for (i = 0; i < readDir.length; i++) {  //遍历列表，找出文件名第一段位index的信息==>ret
